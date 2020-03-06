@@ -3,15 +3,14 @@ package com.example.samazon;
 import javax.persistence.*;
 
 @Entity
-public class Car {
+public class Product01 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private String year;
+    private String description;
     private String price;
     private String image;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -24,8 +23,9 @@ public class Car {
 
     /////////////////////////////////////////////////////////////
 
-    public Car() {
-        this.image="https://res.cloudinary.com/dwsdggfi5/image/upload/v1583268617/defaultCarImage_kijrsj.jpg";
+    public Product01() {
+        //set default image
+        this.image="https://res.cloudinary.com/dwsdggfi5/image/upload/v1583268617/defaultproductImage_kijrsj.jpg";
     }
 
     /////////////////////////////////////////////////////////////
@@ -46,12 +46,12 @@ public class Car {
         this.name = name;
     }
 
-    public String getYear() {
-        return year;
+    public String getDescription() {
+        return description;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPrice() {
@@ -62,7 +62,6 @@ public class Car {
         this.price = price;
     }
 
-
     public String getImage() {
         return image;
     }
@@ -70,7 +69,6 @@ public class Car {
     public void setImage(String image) {
         this.image = image;
     }
-
 
     public Category getCategory() {
         return category;
@@ -80,7 +78,6 @@ public class Car {
         this.category = category;
     }
 
-
     public User getUser() {
         return user;
     }
@@ -88,5 +85,4 @@ public class Car {
     public void setUser(User user) {
         this.user = user;
     }
-
 }

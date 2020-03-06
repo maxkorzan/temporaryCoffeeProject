@@ -2,5 +2,5 @@ package com.example.samazon;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface CarRepository extends CrudRepository<Car, Long> {
+public interface ProductRepository01 extends CrudRepository<Product01, Long> {
 }

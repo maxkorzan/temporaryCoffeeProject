@@ -37,33 +37,33 @@
     </ol>
 
     <!-- Project One -->
-<!--    <div th:each="car : ${category.cars}">-->
+<!--    <div th:each="product : ${category.products}">-->
         <div class="row">
             <div class="col-md-7">
                 <a href="#">
-                    <div th:if="${car.image} != null">
-                        <img class="img-fluid rounded mb-3 mb-md-0" th:src="${car.image}" alt="CLOUDINARRRYYYYYYYYYY">
+                    <div th:if="${product.image} != null">
+                        <img class="img-fluid rounded mb-3 mb-md-0" th:src="${product.image}" alt="CLOUDINARRRYYYYYYYYYY">
                     </div>
                 </a>
             </div>
             <div class="col-md-5">
-                <h1 th:inline="text">[[${car.name}]]</h1>
-                <div th:inline="text">Year: [[${car.year}]]</div>
-                <div th:inline="text">Type: [[${car.category.name}]]</div>
-                <div th:inline="text">MSRP: [[${car.price}]]</div>
-                <div th:inline="text">Added by: [[${car.user.username}]]</div>
+                <h1 th:inline="text">[[${product.name}]]</h1>
+                <div th:inline="text">Year: [[${product.year}]]</div>
+                <div th:inline="text">Type: [[${product.category.name}]]</div>
+                <div th:inline="text">MSRP: [[${product.price}]]</div>
+                <div th:inline="text">Added by: [[${product.user.username}]]</div>
 
                 <br>
 
-<!--                <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Update</button></a>-->
-<!--                <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Details</button></a>-->
-<!--                <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" style="opacity: 80%">Delete</button></a>-->
+<!--                <a th:href="@{/update/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Update</button></a>-->
+<!--                <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Details</button></a>-->
+<!--                <a th:href="@{/delete/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-danger" style="opacity: 80%">Delete</button></a>-->
 
-                <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
+                <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
                 <br><br>
-                <div th:if="${car.user.getId()} == ${car_user_id}">
-                    <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
-                    <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
+                <div th:if="${product.user.getId()} == ${product_user_id}">
+                    <a th:href="@{/update/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
+                    <a th:href="@{/delete/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
                 </div>
 
             </div>

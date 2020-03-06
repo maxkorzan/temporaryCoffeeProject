@@ -38,7 +38,7 @@ public class User {
     private Collection<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Car> cars;
+    public Set<Product> products;
 
 
     /////////////////////////////////////////////////////////////
@@ -122,12 +122,12 @@ public class User {
         this.roles = roles;
     }
 
-    public Set<Car> getCars() {
-        return cars;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setCars(Set<Car> cars) {
-        this.cars = cars;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
 }

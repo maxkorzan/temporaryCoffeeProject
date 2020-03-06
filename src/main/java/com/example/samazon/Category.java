@@ -11,7 +11,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Car> cars;
+    private Set<Product> products;
 
 
 
@@ -36,11 +36,11 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Car> getCars() {
-        return cars;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setCars(Set<Car> cars) {
-        this.cars = cars;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }
