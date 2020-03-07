@@ -40,6 +40,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Product> products;
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Cart> cart;
+
 
     /////////////////////////////////////////////////////////////
 

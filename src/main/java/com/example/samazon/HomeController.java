@@ -98,7 +98,7 @@ public class HomeController {
 
     }
 
-    //CATEGORY - Duplicate of Index, but filter results by selected "category"
+    //CATEGORY PAGE - Duplicate of Index, but filters results by selected "category"
     @RequestMapping("/category/{id}")
     public String category(@PathVariable("id") long id, Model model, Principal principal, Authentication authentication) {
         model.addAttribute("category", categoryRepository.findById(id).get());
@@ -219,5 +219,20 @@ public class HomeController {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //CART PAGE
+    @RequestMapping("/cart")
+    public String cart(Model model, Principal principal){
+        model.addAttribute("product", new Product());
+        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+
+
+        return "cart";
+    }
+
+
+
+
+
 
 } //end HomeController
