@@ -18,13 +18,22 @@
 <br>
 
 
+**FOR TESTING ONLY**  -- CART BUTTON
+<a th:href="@{/cart}"><button type="button" class="btn btn-success" >Cart</button></a>
+
+<!--<div th:each="user : ${users}">-->
+<!--    <a th:href="@{/cart/{user_id}(user_id=${user.id})}"><button type="button" class="btn btn-success" >Cart</button></a>-->
+<!--</div>-->
+
+
+
+<!--Header-->
 <div class="container">
-    <!--Header-->
     <h1 class="mt-4 mb-3">Showroom <small style="color: white">Current Inventory</small></h1>
 </div>
 
+<!--Category Navbar-->
 <div class="container bg-faded text-white">
-    <!--Category Navbar-->
     <br>
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">
@@ -37,7 +46,7 @@
         </div>
     </ol>
 
-    <!-- Project One -->
+    <!-- List of Products -->
     <div th:each="product : ${products}">
         <div class="row">
             <div class="col-md-7">
@@ -57,10 +66,15 @@
                 <br>
 
                 <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
+<!--                <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Add to Cart</button></a>-->
+                <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Add to Cart</button></a>
                 <br><br>
                 <div th:if="${product.user.getId()} == ${product_user_id}">
                 <a th:href="@{/update/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
                 <a th:href="@{/delete/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
+
+
+
                 </div>
 
             </div>

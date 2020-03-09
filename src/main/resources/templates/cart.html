@@ -13,20 +13,24 @@
 </head>
 <body>
 
-//Navigation Bar
+<!--Navigation Bar-->
 <div th:replace="base :: navbar"></div>
 <br>
 <br>
 
 
 <h1>Shopping Cart</h1>
-
 <h2>Your Items</h2>
 
 <div class="container">
 
-    //display each product + details
-    <div th:each="product : ${products}">
+    <!-- Project One -->
+    <!--display each product + details-->
+
+<div th:each="cart : ${carts}">
+    <h1 th:inline="text">CART #[[${cart.id}]]</h1>
+
+    <div th:each="product : ${cart.productsInCart}">
         <div class="row">
             <div class="col-md-7">
                 <a href="#">

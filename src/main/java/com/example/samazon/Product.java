@@ -1,6 +1,8 @@
 package com.example.samazon;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -20,6 +22,9 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(mappedBy = "productsInCart")
+    private Set<Cart> carts;
 
 
     /////////////////////////////////////////////////////////////

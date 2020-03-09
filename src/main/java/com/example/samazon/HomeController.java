@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.utils.ObjectUtils;
 
+import javax.print.attribute.standard.PresentationDirection;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -27,6 +30,8 @@ public class HomeController {
     CloudinaryConfig cloudc;
     @Autowired
     private UserService userService;
+    @Autowired
+    CartRepository cartRepository;
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +41,31 @@ public class HomeController {
     @RequestMapping("/login")
     public String login(){
         return "login";
+    }
+
+//    @GetMapping("/login")
+//    public String login(Model model){
+//        //create a new Cart when user logs in
+//        model.addAttribute("cart", new Cart());
+//        return "login";
+//    }
+//
+//    @PostMapping("/login")
+//    public String processLogin(@ModelAttribute Cart cart, Principal principal){
+//        //save Cart to repository and link to User
+//        cart.setId(9999);
+//        cart.setEnabled(true);
+////        cart.setUser(userRepository.findByUsername(principal.getName()));
+//        cartRepository.save(cart);
+//
+//        return "redirect:/";
+//    }
+
+
+
+
+    public CartRepository getCartRepository() {
+        return cartRepository;
     }
 
     //USER REGISTRATION
@@ -84,12 +114,15 @@ public class HomeController {
         //pull all categories from repo --> template
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
 
         //check for currently logged in "user", if no current user then set to "0" to prevent errors
         String username = null;
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+
             return "index";
         } catch (Exception e){
             model.addAttribute("product_user_id", 0);
@@ -219,20 +252,92 @@ public class HomeController {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //CART PAGE
+//    //CART PAGE
+//    @RequestMapping("/cart/{user_id}")
+//    public String cart(@PathVariable("user_id") long id, Model model, Principal principal){
+//        model.addAttribute("products", productRepository.findAll());
+//        model.addAttribute("carts", cartRepository.findAll());
+//
+////      model.addAttribute("product", new Product());
+//        model.addAttribute("product", productRepository.findById(id).get());
+//
+//        model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+//
+//
+//        String username = null;
+//        try {
+//            username = principal.getName();
+//            model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+//            return "cart";
+//        } catch (Exception e){
+//            model.addAttribute("product_user_id", 0);
+//            return "cart";
+//        }
+//
+////        return "cart";
+//
+//    }
+//    }
+
+    //CART PAGE -- SIMPLIFIED VERSION
     @RequestMapping("/cart")
-    public String cart(Model model, Principal principal){
-        model.addAttribute("product", new Product());
+    public String cart(Model model, Principal principal, Authentication authentication) {
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
-        model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("carts", cartRepository.findAll());
 
 
-        return "cart";
+        //check for currently logged in "user", if no current user then set to "0" to prevent errors
+        String username = null;
+        try {
+            username = principal.getName();
+            model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+
+//            return "redirect:/cart";
+            return "cart";
+        } catch (Exception e) {
+            model.addAttribute("product_user_id", 0);
+//            return "redirect:/cart";
+            return "cart";
+        }
+
     }
 
+    //ADD PRODUCT TO CART
+    @RequestMapping("/addToCart/{id}")
+    public String addToCart(@PathVariable("id") long id, Model model, Principal principal, Authentication authentication){
+        model.addAttribute("product", productRepository.findById(id).get());
+        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
 
 
+        if(cartRepository.findByEnabled(true) != null){
+            Cart currentCart = cartRepository.findByEnabled(true);
 
+//            Set<Product> productsInCart = new HashSet<>();
+            Set<Product> productsInCart = currentCart.getProductsInCart();
+            productsInCart.add(productRepository.findById(id).get());
+            currentCart.setProductsInCart(productsInCart);
+
+            cartRepository.save(currentCart);
+        }
+        else{
+            Cart currentCart = new Cart();
+            currentCart.setEnabled(true); //sets this cart as "active"
+
+            Set<Product> productsInCart = new HashSet<>();
+            productsInCart.add(productRepository.findById(id).get());
+            currentCart.setProductsInCart(productsInCart);
+
+            cartRepository.save(currentCart);
+        }
+
+        return "redirect:/";
+
+    }
 
 
 } //end HomeController

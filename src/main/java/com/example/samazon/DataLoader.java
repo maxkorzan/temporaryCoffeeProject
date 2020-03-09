@@ -63,7 +63,7 @@ public class DataLoader implements CommandLineRunner {
         product.setYear("2019");
         product.setPrice("$65,499");
         product.setImage("https://res.cloudinary.com/dwsdggfi5/image/upload/v1582924913/Images/vehicle/f150_ur1kc5.jpg");
-        product.setUser(user2);
+        product.setUser(user);
 
         //create empty set "products", add "product" object, and add the set to "category"
         Set<Product> products = new HashSet<>();
