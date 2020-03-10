@@ -10,6 +10,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private boolean enabled;
+    private double sum;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -25,6 +26,7 @@ public class Cart {
 
     ///////////////////////////////////////////////////////
 
+
     public long getId() {
         return id;
     }
@@ -39,6 +41,14 @@ public class Cart {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public double getSum() {
+        return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
     }
 
     public User getUser() {

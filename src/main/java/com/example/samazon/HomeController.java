@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.utils.ObjectUtils;
 
-import javax.print.attribute.standard.PresentationDirection;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
@@ -287,28 +286,59 @@ public class HomeController {
     //CART PAGE -- SIMPLIFIED VERSION
     @RequestMapping("/cart")
     public String cart(Model model, Principal principal, Authentication authentication) {
+        double sum = 0;
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
 
+        if(cartRepository.findByEnabled(true) != null){
+            Cart currentCart = cartRepository.findByEnabled(true);
+            Set<Product> productsInCart = currentCart.getProductsInCart();
+
+            for(Product product : productsInCart){
+                sum += product.getPrice();
+                System.out.println("(if) sum = " + sum);
+            }
+
+            currentCart.setSum(sum);
+            cartRepository.save(currentCart);
+        }
+        else {
+            Cart currentCart = new Cart();
+            currentCart.setEnabled(true); //sets this cart as "active"
+
+            Set<Product> productsInCart = new HashSet<>();
+            currentCart.setProductsInCart(productsInCart);
+            cartRepository.save(currentCart);
+        }
+
+
+
+
+
+
+//        if(sum <= 50){
+//            sum += 7.99;
+//            System.out.println("(if) sum + shipping = " + sum);
+//        }
+
 
         //check for currently logged in "user", if no current user then set to "0" to prevent errors
         String username = null;
+
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
             model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
-
-//            return "redirect:/cart";
             return "cart";
         } catch (Exception e) {
             model.addAttribute("product_user_id", 0);
-//            return "redirect:/cart";
             return "cart";
         }
 
     }
+
 
     //ADD PRODUCT TO CART
     @RequestMapping("/addToCart/{id}")
@@ -319,9 +349,9 @@ public class HomeController {
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
 
 
+
         if(cartRepository.findByEnabled(true) != null){
             Cart currentCart = cartRepository.findByEnabled(true);
-
 //            Set<Product> productsInCart = new HashSet<>();
             Set<Product> productsInCart = currentCart.getProductsInCart();
             productsInCart.add(productRepository.findById(id).get());
@@ -329,7 +359,7 @@ public class HomeController {
 
             cartRepository.save(currentCart);
         }
-        else{
+        else {
             Cart currentCart = new Cart();
             currentCart.setEnabled(true); //sets this cart as "active"
 
@@ -343,6 +373,41 @@ public class HomeController {
         return "redirect:/";
 
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //PAST ORDERS
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //CHECKOUT
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //PAYMENT AND ADDRESS FORM PAGE
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //FINAL CONFIRMATION PAGE BEFORE PLACING ORDER
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //PLACE ORDER
+    //send email
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //THANK YOU, ORDER PLACED
+    //currentCart.setEnabled = "false";         //move this order from "active" to "past order"
+    //"back to Home" button
+
+
+
+
+
+
+
+
+
 
 
 } //end HomeController
