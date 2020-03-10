@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <a href="/"><button>Index</button></a>
+    <th:block>
+        <!-- List of Products -->
+        <div th:each="product: ${productSearch}">
+
+            <div class="row">
+                <div class="col-md-7">
+                    <a href="#">
+                        <div th:if="${product.image} != null">
+                            <img class="img-fluid rounded mb-3 mb-md-0" th:src="${product.image}" alt="NO IMAGE">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <h1 th:inline="text">[[${product.name}]]</h1>
+                    <div th:inline="text">Year: [[${product.year}]]</div>
+                    <div th:inline="text">Type: [[${product.category.name}]]</div>
+                    <div th:inline="text">MSRP: [[${product.price}]]</div>
+                    <div th:inline="text">Added by: [[${product.user.username}]]</div>
+
+                    <br>
+
+                    <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
+                    <!--                <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Add to Cart</button></a>-->
+                    <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Add to Cart</button></a>
+                    <br><br>
+                    <div th:if="${product.user.getId()} == ${product_user_id}">
+                        <a th:href="@{/update/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
+                        <a th:href="@{/delete/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br>
+            <hr>
+            <br>
+
+        </div>
+
+    </th:block>
+
+</div>
+
+</body>
+</html>
