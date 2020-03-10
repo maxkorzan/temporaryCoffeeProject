@@ -1,16 +1,21 @@
 Cloudinary Login
 
-email: levogi4314@nuevomail.com
-password: Cloudinary1!
+email: jinoto3023@mailernam.com
+password: Coffee1!
 
 Cloud name:	
-dwsdggfi5
+dblb2mhw4
 
 API Key:	
-584755344214182
+816213892174599
 
 API Secret:	
-8hQa_Hxp6k9yeriZeFUquz1wxn4
+IQxr2MrFwdyOB97wl1ZLls6UGVo
 
 Environment variable:	
-CLOUDINARY_URL=cloudinary://584755344214182:8hQa_Hxp6k9yeriZeFUquz1wxn4@dwsdggfi5
+CLOUDINARY_URL=cloudinary://816213892174599:IQxr2MrFwdyOB97wl1ZLls6UGVo@dblb2mhw4
+
+
+Base delivery URL:	http://res.cloudinary.com/dblb2mhw4 ▼
+Secure delivery URL:	https://res.cloudinary.com/dblb2mhw4 ▼
+API Base URL:	https://api.cloudinary.com/v1_1/dblb2mhw4 ▼

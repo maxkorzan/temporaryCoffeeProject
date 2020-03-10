@@ -4,7 +4,7 @@ body{
     /*background-color: rgba(0, 0, 0, 0.4);*/
     /*background-blend-mode: lighten;*/
 
-    background: url("images/background/photo-1425342605259-25d80e320565.jfif") no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/dblb2mhw4/image/upload/v1583855744/background01_qlxja0.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

@@ -43,27 +43,6 @@ public class HomeController {
         return "login";
     }
 
-//    @GetMapping("/login")
-//    public String login(Model model){
-//        //create a new Cart when user logs in
-//        model.addAttribute("cart", new Cart());
-//        return "login";
-//    }
-//
-//    @PostMapping("/login")
-//    public String processLogin(@ModelAttribute Cart cart, Principal principal){
-//        //save Cart to repository and link to User
-//        cart.setId(9999);
-//        cart.setEnabled(true);
-////        cart.setUser(userRepository.findByUsername(principal.getName()));
-//        cartRepository.save(cart);
-//
-//        return "redirect:/";
-//    }
-
-
-
-
     public CartRepository getCartRepository() {
         return cartRepository;
     }

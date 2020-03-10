@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
+@Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,6 +41,7 @@ public class Product {
         this.onSale = onSale;
         this.category = category;
         this.user = user;
+        /*this.carts = carts;*/
     }
 
     /////////////////////////////////////////////////////////////
