@@ -1,8 +1,14 @@
-body{
-    /*color: white;*/
+body {
+    color: white;
     /*background-image: url("https://res.cloudinary.com/dwsdggfi5/image/upload/v1582908331/Images/background/photo-1550468650-c128cc3c4366_wuv3dm.jpg");*/
     /*background-color: rgba(0, 0, 0, 0.4);*/
     /*background-blend-mode: lighten;*/
+
+    /*background: url("https://res.cloudinary.com/dblb2mhw4/image/upload/v1583855744/background01_qlxja0.jpg") no-repeat center center fixed;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
 
     background: url("https://res.cloudinary.com/dblb2mhw4/image/upload/v1583855744/background01_qlxja0.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -10,27 +16,45 @@ body{
     -o-background-size: cover;
     background-size: cover;
 
-
+    background-color: rgba(0, 0, 0, 0.62);
+    background-blend-mode: darken;
+}
     /*http://mrcoffee.just-themes.com/*/
 
-    color: #b89d64;
-    color: #513826;
-    color: #2b1b13;
+    /*color: #b89d64;*/
+    /*color: #513826;*/
+    /*color: #2b1b13;*/
 
-    color: #f5f2eb;
-    color: #e5e0d6;
-    color: #d8cfb5;
-    color: #b89d64;
-    color: #bfa773;
-    color: #2b1b13;
-    color: #2c1910;
-    color: #1e130e;
-
-
+    /*color: #f5f2eb;*/
+    /*color: #e5e0d6;*/
+    /*color: #d8cfb5;*/
+    /*color: #b89d64;*/
+    /*color: #bfa773;*/
+    /*color: #2b1b13;*/
+    /*color: #2c1910;*/
+    /*color: #1e130e;*/
 
 
-
+.vimeo-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
 }
+
+.vimeo-wrapper iframe {
+    width: 100vw;
+    height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+    min-height: 100vh;
+    min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 
 

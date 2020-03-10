@@ -17,40 +17,15 @@
 <!-- Navigation -->
 <div class="navigation" th:fragment="navbar">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark <!--fixed-top-->" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="/"><strong>MK</strong></a>
+    <nav class="navbar navbar-expand-lg navbar-dark <!--fixed-top-->" id="mainNav">
+        <div class="container" style="font-family: 'Spectral SC', serif;">
+            <a class="navbar-brand" href="/" style="font-family: 'Julius Sans One', sans-serif;"><img src="https://res.cloudinary.com/dwsdggfi5/image/upload/c_scale,h_40/v1583438126/Images/Avatar/appa_logo_j9dof2.png" style="opacity: 1"> Bullhorn Messenger </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"><button type="button" class="btn btn-outline-light"> Home </button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/addCategory"><button type="button" class="btn btn-outline-light"> Add Category </button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/addProduct"><button type="button" class="btn btn-outline-light"> Add Product </button></a>
-                    </li>
-
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="/login"><button type="button" class="btn btn-outline-light"> Log In </button></a>-->
-<!--                    </li>-->
-
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="/logout"><button type="button" class="btn btn-outline-light"> Log Out </button></a>-->
-<!--                    </li>-->
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/secure"><button type="button" class="btn btn-outline-light"> My Account </button></a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a th:href="@{/cart}"><button type="button" class="btn btn-success" >Cart</button></a>
-                    </li>
 
                     <li class="nav-item">
                         <form th:action="@{/search}" method="post">
@@ -59,10 +34,64 @@
                         </form>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"> Home </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/secure"> My Account </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart"> Cart </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"> Log Out </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark &lt;!&ndash;fixed-top&ndash;&gt;" id="mainNav">-->
+<!--        <div class="container">-->
+<!--            <a class="navbar-brand" href="/"><strong>MK</strong></a>-->
+<!--            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                Menu-->
+<!--                <i class="fas fa-bars"></i>-->
+<!--            </button>-->
+<!--            <div class="collapse navbar-collapse" id="navbarResponsive">-->
+<!--                <ul class="navbar-nav ml-auto">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/"><button type="button" class="btn btn-outline-light"> Home </button></a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/addCategory"><button type="button" class="btn btn-outline-light"> Add Category </button></a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/addProduct"><button type="button" class="btn btn-outline-light"> Add Product </button></a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/secure"><button type="button" class="btn btn-outline-light"> My Account </button></a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <a th:href="@{/cart}"><button type="button" class="btn btn-success" >Cart</button></a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <form th:action="@{/search}" method="post">-->
+<!--                            <input type="text" name="search" placeholder="Search for a product" required> &lt;!&ndash;the "search" from RequestParam&ndash;&gt;-->
+<!--                            <input type="submit" value="Enter">-->
+<!--                        </form>-->
+<!--                    </li>-->
+
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
 
 </div>
 
