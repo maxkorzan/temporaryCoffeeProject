@@ -41,12 +41,12 @@ public class DataLoader implements CommandLineRunner {
         Role adminRole = roleRepository.findByRole("ADMIN");
         Role userRole = roleRepository.findByRole("USER");
 
-        User user = new User("jim@jim.com", "password", "Jim", "Jimmerson", true, "jim");
-        user.setRoles(Arrays.asList(userRole));
+        User user = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
+        user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
 
-        User user2 = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
-        user2.setRoles(Arrays.asList(adminRole));
+        User user2 = new User("jim@jim.com", "password", "Jim", "Jimmerson", true, "jim");
+        user2.setRoles(Arrays.asList(userRole));
         userRepository.save(user2);
 
         ///////////////////////////////////////////// END SECURITY /////////////////////////////////////////////
@@ -55,15 +55,10 @@ public class DataLoader implements CommandLineRunner {
         //////////////////////////////////////////////////////////////////////
         //create "category"
         Category category = new Category();
-        category.setName("Truck");
+        category.setName("Coffee Beans");
 
         //create "product"
-        Product product = new Product();
-        product.setName("Ford F-150 Raptor");
-        product.setYear("2019");
-        product.setPrice("$65,499");
-        product.setImage("https://res.cloudinary.com/dwsdggfi5/image/upload/v1582924913/Images/vehicle/f150_ur1kc5.jpg");
-        product.setUser(user);
+        Product product = new Product("Arabica", "tastey beans", "cloudinarylinkhere.com", 20.00, false, category, user);
 
         //create empty set "products", add "product" object, and add the set to "category"
         Set<Product> products = new HashSet<>();
@@ -74,6 +69,35 @@ public class DataLoader implements CommandLineRunner {
         //define and save category for "product"
         product.setCategory(category);
         productRepository.save(product);
+
+
+
+        category = new Category();
+        category.setName("Kettle");
+        product = new Product("Kettle", "a metal pot", "cloudinarylinkhere.com", 20.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Kettle");
+        product = new Product("Kettle", "a metal pot", "cloudinarylinkhere.com", 20.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+
+
+
+
+
+
 
         //////////////////////////////////////////////////////////////////////
         //create multiple products for a single category
