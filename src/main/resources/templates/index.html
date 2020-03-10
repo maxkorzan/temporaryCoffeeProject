@@ -14,6 +14,7 @@
 <body>
 
 <div th:replace="base :: navbar"></div>
+<div th:replace="base :: categorybar"></div>
 <br>
 <br>
 
@@ -29,19 +30,20 @@
     <h1 class="mt-4 mb-3">Showroom <small style="color: white">Current Inventory</small></h1>
 </div>
 
-<!--Category Navbar-->
+
 <div class="container bg-faded text-white">
-    <br>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active">
-            <a href="/"><button type="button" class="btn btn-outline-dark"> All </button></a>&emsp;
-        </li>
-        <div th:each="category : ${categories}">
-            <li class="breadcrumb-item">
-                <a  th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-outline-dark" th:text="${category.name}"></button></a>&emsp;
-            </li>
-        </div>
-    </ol>
+<!--Category Navbar-->
+<!--    <br>-->
+<!--    <ol class="breadcrumb">-->
+<!--        <li class="breadcrumb-item active">-->
+<!--            <a href="/"><button type="button" class="btn btn-outline-dark"> All </button></a>&emsp;-->
+<!--        </li>-->
+<!--        <div th:each="category : ${categories}">-->
+<!--            <li class="breadcrumb-item">-->
+<!--                <a  th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-outline-dark" th:text="${category.name}"></button></a>&emsp;-->
+<!--            </li>-->
+<!--        </div>-->
+<!--    </ol>-->
 
     <!-- List of Products -->
     <div th:each="product : ${products}">

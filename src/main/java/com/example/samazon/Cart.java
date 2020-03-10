@@ -26,6 +26,14 @@ public class Cart {
 
     ///////////////////////////////////////////////////////
 
+//    method to remove item from Set<Product> productsInCart
+    public void removeProductFromSet(Product product){
+        this.productsInCart.remove(product);     //remove product from productsInCart set
+        product.getCarts().remove(this);     //break the relationship from the product side
+    }
+
+
+
 
     public long getId() {
         return id;

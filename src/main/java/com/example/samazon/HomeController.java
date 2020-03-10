@@ -255,6 +255,17 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @RequestMapping("/removeProduct/{id}")
+    public String removeProduct(@PathVariable("id") long id, Model model) {
+        model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("product", productRepository.findById(id).get());
+
+//        Cart currentCart = cartRepository.findById(id);
+//        currentCart.removeProductFromSet(product);
+
+        return "redirect:/cart";
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    //CART PAGE
 //    @RequestMapping("/cart/{user_id}")
@@ -266,26 +277,13 @@ public class HomeController {
 //        model.addAttribute("product", productRepository.findById(id).get());
 //
 //        model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
-//
-//
-//        String username = null;
-//        try {
-//            username = principal.getName();
-//            model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
-//            return "cart";
-//        } catch (Exception e){
-//            model.addAttribute("product_user_id", 0);
-//            return "cart";
-//        }
-//
-////        return "cart";
-//
 //    }
 //    }
 
     //CART PAGE -- SIMPLIFIED VERSION
     @RequestMapping("/cart")
-    public String cart(Model model, Principal principal, Authentication authentication) {
+    /*@RequestMapping("/cart/{cart_id}")*/
+    public String cart(Model model, Principal principal, Authentication authentication /*@PathVariable("cart_id") long id*/) {
         double sum = 0;
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
@@ -313,20 +311,8 @@ public class HomeController {
             cartRepository.save(currentCart);
         }
 
-
-
-
-
-
-//        if(sum <= 50){
-//            sum += 7.99;
-//            System.out.println("(if) sum + shipping = " + sum);
-//        }
-
-
         //check for currently logged in "user", if no current user then set to "0" to prevent errors
         String username = null;
-
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
@@ -376,36 +362,47 @@ public class HomeController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //PAST ORDERS
+    @RequestMapping("/pastOrders")
+    public String pastOrders(){
+        return "pastOrders";
+    }
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //CHECKOUT
+    @RequestMapping("/checkout")
+    public String checkout(){
+        return "checkout";
+    }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //PAYMENT AND ADDRESS FORM PAGE
+    @RequestMapping("/formPayment")
+    public String formPayment(){
+        return "formPayment";
+    }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //FINAL CONFIRMATION PAGE BEFORE PLACING ORDER
-
+    @RequestMapping("/finalConfirm")
+    public String finalConfirm(){
+        return "finalConfirm";
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //PLACE ORDER
+    @RequestMapping("/placeOrder")
+    public String placeOrder(){
+        return "placeOrder";
+    }
     //send email
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //THANK YOU, ORDER PLACED
     //currentCart.setEnabled = "false";         //move this order from "active" to "past order"
     //"back to Home" button
-
-
-
-
-
-
-
 
 
 
