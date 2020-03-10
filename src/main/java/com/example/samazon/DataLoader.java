@@ -73,7 +73,7 @@ public class DataLoader implements CommandLineRunner {
 
         category = new Category();
         category.setName("Kettle");
-        product = new Product("Kettle", "a metal pot", "cloudinarylinkhere.com", 20.00, false, category, user);
+        product = new Product("Kettle", "a metal pot", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/metalkettle_l1jew6.jpg", 20.00, false, category, user);
         products = new HashSet<>();
         products.add(product);
         category.setProducts(products);
@@ -83,7 +83,97 @@ public class DataLoader implements CommandLineRunner {
 
         category = new Category();
         category.setName("Kettle");
-        product = new Product("Kettle", "a metal pot", "cloudinarylinkhere.com", 20.00, false, category, user);
+        product = new Product("Kettle", "a red metal pot", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/redkettle_cnfzrv.png", 25.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Coffee Press");
+        product = new Product("french press", "a french press", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861549/frenchpress_gip6lw.jpg", 25.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Coffee Press");
+        product = new Product(" chaulk french press", "a chaulk french press", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/chalkfrenchpress_zikr20.jpg", 35.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Espresso Machines");
+        product = new Product("espresso machine - large", "an industrial espresso machine", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861549/fancyespresso_fewl8n.jpg", 17035.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Espresso Machines");
+        product = new Product("espresso machine - small", "a small espresso machine", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/singleespressomach_nezrps.jpg", 200.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Milk Frother");
+        product = new Product("milk frother", "a small electric milk frother", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861549/frother_nftwtw.jpg", 50.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Milk Frother");
+        product = new Product("milk frother pitcher", "a small metal frothing pitcher", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/milkfrotherpicture_msldyr.jpg", 25.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Cold Brew");
+        product = new Product("small cold brew pitcher", "a small cold brew pitcher", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/Primula-Burke-Cold-Brew-Maker-2-SOURCE-Amazon_zkdbkw.jpg", 25.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Cold Brew");
+        product = new Product("large cold brew pitcher", "a large cold brew pitcher", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/coldbrew_m3n4cn.jpg", 225.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        category = new Category();
+        category.setName("Coffee Grinder");
+        product = new Product("large coffee grinder", "a large coffee grinder", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/coffeegrinder_yt9l2k.jpg", 500.00, false, category, user);
         products = new HashSet<>();
         products.add(product);
         category.setProducts(products);
@@ -92,11 +182,55 @@ public class DataLoader implements CommandLineRunner {
         productRepository.save(product);
 
 
+        category = new Category();
+        category.setName("Coffee Grinder");
+        product = new Product("small coffee grinder", "a small coffee grinder", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861549/handcoffeegrinder_wj7ewm.jpg", 50.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
 
+        category = new Category();
+        category.setName("Coffee Maker");
+        product = new Product("small coffee maker", "a small coffee maker", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/mrcoffeebrew_bsmy5y.jpg", 50.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
 
+        category = new Category();
+        category.setName("Coffee Maker");
+        product = new Product("medium coffee maker", "a medium coffee maker", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/coffeebrew_jcz50w.jpg", 150.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
 
+        category = new Category();
+        category.setName("Coffee Cups");
+        product = new Product("high tech coffee cup", "a high tech coffee cup with bluetooth", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861549/ember_baxv9v.jpg", 200.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
 
-
+        category = new Category();
+        category.setName("Coffee Cups");
+        product = new Product("low tech coffee cup", "a low tech coffee cup with spoon", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861548/coffeemugsspoon_y0gez1.jpg", 20.00, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
 
 //        //////////////////////////////////////////////////////////////////////
 //        //create multiple products for a single category
