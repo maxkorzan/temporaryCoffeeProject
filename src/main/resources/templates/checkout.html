@@ -44,12 +44,18 @@
             <td></td>
             <td></td>
             <td></td>
+            <div th:if="${cart.sum} < 50">
+                <div th ${cart.sum} += 7.99></div>
+                <div th:else="${cart.sum} += 0"></div>
+
             <td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>
+            </div>
         </tr>
         </tbody>
     </table>
 </div>
 
+<!--
 SHIPPING:
 if(total < 50){
     total += 7.99
@@ -57,6 +63,7 @@ if(total < 50){
     total = total
 }
 
+-->
 
 
 </body>
