@@ -135,7 +135,6 @@ public class HomeController {
     @RequestMapping("/search")
     public String search(@RequestParam("search") String searchTerm, Model model, Principal principal, Authentication authentication){
         model.addAttribute("productSearch", productRepository.findByNameContainsIgnoreCase(searchTerm));
-
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
@@ -145,12 +144,9 @@ public class HomeController {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
             return "searchlist";
-//            return "redirect:/searchlist";
         } catch (Exception e){
             model.addAttribute("product_user_id", 0);
             return "searchlist";
-//            return "redirect:/searchlist";
-
         }
 
     }
