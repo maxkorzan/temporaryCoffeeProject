@@ -70,6 +70,14 @@ public class DataLoader implements CommandLineRunner {
         product.setCategory(category);
         productRepository.save(product);
 
+        product = new Product("Italian Roast Espresso 5lb", "This signature blend of Italian roasted coffee beans from South America and India is a heavy, full-bodied roast. Displaying a toasty, honeyed aroma and notes of cocoa powder and smoky molasses, these gourmet beans are our most popular coffee blend.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 29.99, false, category, user);
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+
         category = new Category();
         category.setName("Espresso Bean");
         product = new Product("Italian Roast Espresso 5lb", "This signature blend of Italian roasted coffee beans from South America and India is a heavy, full-bodied roast. Displaying a toasty, honeyed aroma and notes of cocoa powder and smoky molasses, these gourmet beans are our most popular coffee blend.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 29.99, false, category, user);
