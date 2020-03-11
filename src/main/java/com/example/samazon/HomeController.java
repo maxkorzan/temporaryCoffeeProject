@@ -100,6 +100,8 @@ public class HomeController {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
             model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+            model.addAttribute("cart_id", cartRepository.findByEnabledAndUser(true, userService.getUser()));
+
 
             return "index";
         } catch (Exception e){
@@ -259,35 +261,36 @@ public class HomeController {
 //        Cart currentCart = cartRepository.findById(id);
 //        currentCart.removeProductFromSet(product);
 
-        return "redirect:/cart";
+        return "cart";
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    //CART PAGE
-//    @RequestMapping("/cart/{user_id}")
-//    public String cart(@PathVariable("user_id") long id, Model model, Principal principal){
-//        model.addAttribute("products", productRepository.findAll());
-//        model.addAttribute("carts", cartRepository.findAll());
-//
-////      model.addAttribute("product", new Product());
-//        model.addAttribute("product", productRepository.findById(id).get());
-//
-//        model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
-//    }
-//    }
+//    @RequestMapping("/cart")
+//    public String cart(Model model, Principal principal, Authentication authentication) {
+//    @RequestMapping("/cart/{cart_id}")
+//    public String cart(Model model, Principal principal, Authentication authentication, @PathVariable("cart_id") long id) {
+    @RequestMapping("/cart/{user_id}")
+    public String cart(@PathVariable("user_id") long id, Model model, Authentication authentication, Principal principal){
 
-    //CART PAGE -- SIMPLIFIED VERSION
-    @RequestMapping("/cart")
-    /*@RequestMapping("/cart/{cart_id}")*/
-    public String cart(Model model, Principal principal, Authentication authentication /*@PathVariable("cart_id") long id*/) {
         double sum = 0;
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
+        //Cart cart1 = cartRepository.findByEnabledAndUser(true, userService.getUser());
+        //model.addAttribute("cart1", cart1);
         model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("cart_id", cartRepository.findByEnabledAndUser(true, userService.getUser()));
 
-        if(cartRepository.findByEnabled(true) != null){
-            Cart currentCart = cartRepository.findByEnabled(true);
+
+//        if(userService.getUser() != null) {
+//            model.addAttribute("user_id", userService.getUser().getId());
+//        }
+
+
+        //check if an active cart exists, and if that cart is tied to the current user
+        if((cartRepository.findByEnabledAndUser(true, userService.getUser()) != null)){
+            Cart currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
             Set<Product> productsInCart = currentCart.getProductsInCart();
 
             for(Product product : productsInCart){
@@ -297,22 +300,28 @@ public class HomeController {
 
             currentCart.setSum(sum);
             cartRepository.save(currentCart);
+            model.addAttribute("cart1", currentCart);
+            model.addAttribute("user_id", userService.getUser().getId());
         }
+        //otherwise, create a new cart to use
         else {
-            Cart currentCart = new Cart();
-            currentCart.setEnabled(true); //sets this cart as "active"
-
-            Set<Product> productsInCart = new HashSet<>();
-            currentCart.setProductsInCart(productsInCart);
-            cartRepository.save(currentCart);
+            return "emptycart";
+//            Cart currentCart = new Cart();
+//            currentCart.setEnabled(true); //sets this cart as "active"
+//            currentCart.setUser(userService.getUser());
+//
+//            Set<Product> productsInCart = new HashSet<>();
+//            currentCart.setProductsInCart(productsInCart);
+//            cartRepository.save(currentCart);
+//            model.addAttribute("cart1", currentCart);
         }
+
 
         //check for currently logged in "user", if no current user then set to "0" to prevent errors
         String username = null;
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
-            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
             return "cart";
         } catch (Exception e) {
             model.addAttribute("product_user_id", 0);
@@ -321,7 +330,7 @@ public class HomeController {
 
     }
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //ADD PRODUCT TO CART
     @RequestMapping("/addToCart/{id}")
     public String addToCart(@PathVariable("id") long id, Model model, Principal principal, Authentication authentication){
@@ -331,9 +340,8 @@ public class HomeController {
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
 
 
-
-        if(cartRepository.findByEnabled(true) != null){
-            Cart currentCart = cartRepository.findByEnabled(true);
+        if(cartRepository.findByEnabledAndUser(true, userService.getUser()) != null){
+            Cart currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
 //            Set<Product> productsInCart = new HashSet<>();
             Set<Product> productsInCart = currentCart.getProductsInCart();
             productsInCart.add(productRepository.findById(id).get());
@@ -348,6 +356,8 @@ public class HomeController {
             Set<Product> productsInCart = new HashSet<>();
             productsInCart.add(productRepository.findById(id).get());
             currentCart.setProductsInCart(productsInCart);
+
+            currentCart.setUser(userService.getUser());
 
             cartRepository.save(currentCart);
         }
@@ -414,6 +424,12 @@ public class HomeController {
     @RequestMapping("/credit")
     public String creditform(){
         return "creditform";
+    }
+
+
+    @RequestMapping("/emptycart")
+    public String emptycart(){
+        return "emptycart";
     }
 
 

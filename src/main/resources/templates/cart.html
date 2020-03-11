@@ -31,7 +31,10 @@
     <br>
 
     <!--List Products in Cart-->
-    <div th:each="cart : ${carts}">
+
+<!--        <div th:if="${cart.isEnabled() == true}">-->
+<div th:object="${cart1}">
+<!--        <h1 th:inline="text">Order ID: [[${cart1.id}]]</h1>-->
         <table class="table table-dark table-hover table-striped">
             <thead>
             <tr style="font-family: 'Spectral SC', serif;">
@@ -43,8 +46,8 @@
             </thead>
 
             <tbody>
-            <tr th:each="product : ${cart.productsInCart}">
-                <td><img th:src="${product.image}" class="img-thumbnail"></td>
+            <tr th:each="product : ${cart1.productsInCart}">
+                <td><img th:src="${product.image}" class="img-thumbnail" style="height: 200px"></td>
                 <td th:inline="text"><strong>[[${product.name}]]</strong></td>
                 <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
@@ -54,15 +57,15 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>
+                <td th:inline="text"><strong>Total<br>[[${cart1.sum}]]</strong></td>
             </tr>
             </tbody>
         </table>
-    </div>
-
-
-
+<!--        </div>-->
 </div>
+</div>
+
+
 
 
 

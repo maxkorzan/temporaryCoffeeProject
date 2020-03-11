@@ -42,9 +42,16 @@
                         <a class="nav-link" href="/secure"> My Account </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cart"> Cart </a>
-                        <!--<a class="nav-link" th:href="@/cart/{id}(id=${cart.id})"> Cart </a>-->
+<!--                    <li class="nav-item" th:if="${user_id} == null">-->
+<!--                        <a class="nav-link" href="/secure"> Login </a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item" th:if="${user_id} != null">-->
+<!--                        <a class="nav-link" href="/secure"> My Account </a>-->
+<!--                    </li>-->
+
+                    <li class="nav-item" th:if="${user_id} != null">
+                        <a class="nav-link" th:href="@{/cart/{user_id}(user_id=${user_id})}"> **CART** </a>
                     </li>
 
                 </ul>
@@ -84,11 +91,6 @@
     </nav>
 
 </div>
-
-
-
-
-
 
 
 
