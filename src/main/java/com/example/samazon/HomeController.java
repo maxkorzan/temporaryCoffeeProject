@@ -404,7 +404,13 @@ public class HomeController {
     //currentCart.setEnabled = "false";         //move this order from "active" to "past order"
     //"back to Home" button
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Credit form
 
+    @RequestMapping("/credit")
+    public String creditform(){
+        return "creditform";
+    }
 
 
 } //end HomeController
