@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+        /** { border: 1px solid red !important; }*/
+    </style>
+
 </head>
 <body>
 
+<!--Navigation Bar-->
+<div th:replace="base :: navbar"></div>
+<br>
+<br>
+
 <h1>Confirm</h1>
 
-TABLE:
-display each item name and price
-total = sum of productsInCart prices
+<!--List Products in Cart-->
+<div th:each="cart : ${carts}">
+    <table class="table table-dark table-hover table-striped">
+        <thead>
+        <tr style="font-family: 'Spectral SC', serif;">
+            <td></td>
+            <td>Product</td>
+            <td>Description</td>
+            <td>Price</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="product : ${cart.productsInCart}">
+            <td><img th:src="${product.image}" class="img-thumbnail"></td>
+            <td th:inline="text"><strong>[[${product.name}]]</strong></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.price}"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 SHIPPING:
 if(total < 50){
