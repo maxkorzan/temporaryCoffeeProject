@@ -371,7 +371,10 @@ public class HomeController {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //CHECKOUT
     @RequestMapping("/checkout")
-    public String checkout(){
+    public String checkout(Model model, Principal principal, Authentication authentication) {
+        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
         return "checkout";
     }
 
