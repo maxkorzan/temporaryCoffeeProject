@@ -361,10 +361,15 @@ public class HomeController {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //PAST ORDERS
-    @RequestMapping("/pastOrders")
-    public String pastOrders(){
-        return "pastOrders";
+    //VIEW PAST ORDERS
+    @RequestMapping("/orderHistory")
+    public String orderHistory(Model model, Principal principal, Authentication authentication){
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("carts", cartRepository.findAll());
+
+        return "orderHistory";
     }
 
 
